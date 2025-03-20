@@ -1,0 +1,68 @@
+/* rooot */
+:root {
+  --primary-color: #000;
+  --secondary-color: #fff;
+  --tertiary-color: #f00;
+}
+
+/* reset css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  color: #333;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+button {
+  padding: 10px 20px; 
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+  font-size: 1.6rem;
+}
+
+.btn-primary {
+  background-color: #f93232;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.btn-secondary {
+  background-color: #fff;
+  color: #000;
+}
+
+.btn-secondary:hover {
+  background-color: #000;
+  color: #fff;
+}
