@@ -21,7 +21,6 @@ const formatCvv = (event) => {
     cardCvv.value = value;
 };
 
-// Émettre les données à chaque changement
 watch([cardHolderName, cardNumber, cardExpirationDate, cardCvv], ([name, number, date, cvv]) => {
     emit('card-info-submitted', {
         cardHolderName: name,
