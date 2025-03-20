@@ -5,7 +5,12 @@ import  BusinessInfo from './BusinessInfo.vue';
 
 const handleSubmit = (data) => {
     console.log(data);
-    // Reste à envoyer les données à l'API (Web3Form)
+    // Pour l'instant, je met une alerte pour simuler l'envoi des données
+    if (data.nom && data.prenom && data.email && data.tel && data.message) {
+        alert('Données envoyées avec succès !');
+    } else {
+        alert('Veuillez remplir tous les champs');
+    }
 }
 
 </script>

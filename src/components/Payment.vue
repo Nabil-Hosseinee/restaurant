@@ -1,20 +1,46 @@
 <script setup>
 import { usePanier } from '../shared/usePanier';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
+import CardInfo from './CardInfo.vue';
 
-const { panier } = usePanier();
+const paymentMethod = ref('');
+const cardInfo = ref(null);
+
+const { panier, viderPanier } = usePanier();
 
 const total = computed(() => {
     return panier.value.reduce((total, item) => total + (item.price * item.quantite), 0);
 });
 
 const sousTotal = computed(() => {
-    return total.value * 0.8; // 80% du total
+    return total.value * 0.8;
 });
 
 const tva = computed(() => {
-    return total.value * 0.2; // 20% de TVA
+    return total.value * 0.2;
 });
+
+const handleCardInfoSubmitted = (info) => {
+    cardInfo.value = info;
+};
+
+const handleCheckout = () => {
+    if (paymentMethod.value === 'card' && !cardInfo.value) {
+        alert('Veuillez remplir les informations de carte');
+        return;
+    }
+
+    if (paymentMethod.value === 'card') {
+        // Simuler le traitement du paiement
+        alert('Paiement réussi ! Votre commande a été validée.');
+        viderPanier();
+    } else if (paymentMethod.value === 'cash') {
+        alert('Commande validée ! Vous paierez à la livraison.');
+        viderPanier();
+    } else {
+        alert('Veuillez sélectionner une méthode de paiement');
+    }
+};
 </script>
 
 <template>
@@ -37,17 +63,18 @@ const tva = computed(() => {
         <div class="payment-methods">
             <h3>Méthode de paiement</h3>
             <div class="payment-options">
-                <button class="payment-option">
+                <button class="payment-option" @click="paymentMethod = 'card'">
                     <i class="fa-solid fa-credit-card"></i>
                     <span>Carte bancaire</span>
                 </button>
-                <button class="payment-option">
+                <CardInfo v-if="paymentMethod === 'card'" @card-info-submitted="handleCardInfoSubmitted" />
+                <button class="payment-option" @click="paymentMethod = 'cash'">
                     <i class="fa-solid fa-money-bill-wave"></i>
                     <span>Espèces</span>
                 </button>
             </div>
         </div>
-        <button class="checkout-btn">
+        <button class="checkout-btn" @click="handleCheckout">
             Commander
         </button>
     </div>
@@ -105,7 +132,7 @@ h3 {
 .payment-options {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 2rem;
 }
 
 .payment-option {

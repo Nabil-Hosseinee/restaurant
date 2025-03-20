@@ -13,6 +13,13 @@ const emit = defineEmits(['submit']);
 
 const handleSubmit = () => {
     emit('submit', form.value);
+    form.value = {
+        nom: '',
+        prenom: '',
+        email: '',
+        tel: '',
+        message: '',
+    };
 };
 </script>
 
@@ -22,26 +29,26 @@ const handleSubmit = () => {
         <div class="row">
             <div class="row-item">
                 <label for="nom">Nom</label>    
-                <input type="text" placeholder="Nom" v-model="form.nom">
+                <input type="text" placeholder="Nom" v-model="form.nom" required>
             </div>
             <div class="row-item">
                 <label for="prenom">Prénom</label>
-                <input type="text" placeholder="Prénom" v-model="form.prenom">    
+                <input type="text" placeholder="Prénom" v-model="form.prenom" required>    
             </div>
         </div>
         <div class="row">
             <div class="row-item">
                 <label for="email">Email</label>
-                <input type="email" placeholder="Email" v-model="form.email">
+                <input type="email" placeholder="Email" v-model="form.email" required>
             </div>
             <div class="row-item">
                 <label for="tel">Téléphone</label>
-                <input type="tel" placeholder="Téléphone" v-model="form.tel">
+                <input type="tel" placeholder="Téléphone" v-model="form.tel" required>
             </div>
         </div>
         <div class="row textarea-row">
             <label for="message">Message</label>
-            <textarea name="" id="" placeholder="Message" v-model="form.message"></textarea>
+            <textarea name="" id="" placeholder="Message" v-model="form.message" required></textarea>
         </div>
         <button type="submit" class="submit-btn">Envoyer</button>
     </form>

@@ -40,11 +40,16 @@ export function usePanier() {
         console.log(panier);
     };
 
+    const viderPanier = () => {
+        panier.value = [];
+    };
+
     return {
         panier,
         nombreArticles,
         ajouterAuPanier,
         supprimerDuPanier,
-        modifierQuantite
+        modifierQuantite,
+        viderPanier
     };
 }
